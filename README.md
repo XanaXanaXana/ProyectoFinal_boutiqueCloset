@@ -3,8 +3,8 @@
 
 ## Equipo: 1  
 **Integrantes del equipo:**
-- **Ingrid Arcadio Aparicio** – Desarrolladora y Diseñadora  
-- **Xana Amalinalli Pérez Jiménez** – Desarrolladora y Diseñadora  
+🔹 **Ingrid Arcadio Aparicio** – Desarrolladora y Diseñadora  
+🔹 **Xana Amalinalli Pérez Jiménez** – Desarrolladora y Diseñadora  
 
 ---
 
@@ -15,7 +15,7 @@ Cuenta con un inicio de sesión que valida el correo y la contraseña del usuari
 
 Dependiendo del rol del usuario, el sistema habilita diferentes funcionalidades:
 
-🔹**Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.
+🔹**Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.  
 🔹**Cajero:** tiene acceso a la consulta de productos y al proceso de venta.
 
 ---
@@ -58,29 +58,29 @@ Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además 
 Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ###  CRUD de usuarios
-🔹 Solo accesible para el administrador.
+🔹 Solo accesible para el administrador.  
 🔹 Permite registrar nuevos usuarios (administradores o cajeros), así como editar, eliminar o consultar la información de los existentes.
 
 ###  CRUD de productos
-🔹 Permite al administrador dar de alta, modificar o eliminar productos.
+🔹 Permite al administrador dar de alta, modificar o eliminar productos.  
 🔹 Incluye información como nombre, precio, categoría, etc.
 
 ###  CRUD de pedidos
-🔹 Gestión de pedidos dentro de la boutique.
+🔹 Gestión de pedidos dentro de la boutique.  
 🔹 Permite consultar el historial y detalles de cada pedido.
 
 ###  Proceso de ventas (rol cajero)
-🔹 El cajero puede consultar los productos disponibles.
+🔹 El cajero puede consultar los productos disponibles.  
 🔹 Permite realizar ventas seleccionando productos y cantidades.
 
 ###  Módulo de estadísticas
-🔹 Permite al administrador visualizar reportes gráficos de ventas y actividad del sistema.
+🔹 Permite al administrador visualizar reportes gráficos de ventas y actividad del sistema.  
 🔹 Usa gráficos generados con la librería `jfreechart`.
 
 ###  Envío de correo electrónico con PDF adjunto
-🔹 Al completar ciertas acciones, como registrar usuarios o ventas, se envía un correo al usuario con un **archivo PDF** adjunto.
-🔹 El PDF puede incluir detalles del pedido o confirmaciones.
-🔹 Se usó la librería **`itextpdf-5.5.13.2.jar`** para generar el PDF y **`javax.mail`** para enviarlo por correo.
+🔹 Al completar ciertas acciones, como registrar usuarios o ventas, se envía un correo al usuario con un **archivo PDF** adjunto.  
+🔹 El PDF puede incluir detalles del pedido o confirmaciones.  
+🔹 Se usó la librería **`itextpdf-5.5.13.2.jar`** para generar el PDF y **`javax.mail`** para enviarlo por correo.  
 🔹 Toda esta lógica se maneja a través de **Librería 3** (desarrollada previamente por un equipo de una unidad anterior).
 
 ---
