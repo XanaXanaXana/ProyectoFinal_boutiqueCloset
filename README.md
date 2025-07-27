@@ -52,6 +52,7 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 ## Funcionalidades clave con imágenes
 
 ![Pantalla de Login](capturas/captura1.png)
+![](capturas/captura2.png)
 
 ###  Inicio de sesión con CAPTCHA
 Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además resolver un CAPTCHA.  
