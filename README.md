@@ -2,7 +2,7 @@
 # Boutique Closet - Sistema de Gestión
 
 ## Equipo: 1  
-**Integrantes del equipo:**
+**Integrantes del equipo:**  
 🔹 **Ingrid Arcadio Aparicio** – Desarrolladora y Diseñadora  
 🔹 **Xana Amalinalli Pérez Jiménez** – Desarrolladora y Diseñadora  
 
