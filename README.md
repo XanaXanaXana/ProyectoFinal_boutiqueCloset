@@ -53,6 +53,17 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ![Pantalla de Login](capturas/captura1.png)
 ![](capturas/captura2.png)
+![](capturas/captura3.png)
+![](capturas/captura4.png)
+![](capturas/captura5.png)
+![](capturas/captura6.png)
+![](capturas/captura7.png)
+![](capturas/captura8.png)
+![](capturas/captura9.png)
+![](capturas/captura91.png)
+![](capturas/captura92.png)
+
+---
 
 ###  Inicio de sesión con CAPTCHA
 Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además resolver un CAPTCHA.  
