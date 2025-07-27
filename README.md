@@ -51,7 +51,7 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ## Funcionalidades clave con imágenes
 
-> 📸 (Aquí se recomienda agregar capturas de pantalla del sistema en funcionamiento, como el login con CAPTCHA, las pantallas del administrador y del cajero, los formularios CRUD, etc.)
+![Pantalla de Login](capturas/captura1.png)
 
 ###  Inicio de sesión con CAPTCHA
 Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además resolver un CAPTCHA.  
