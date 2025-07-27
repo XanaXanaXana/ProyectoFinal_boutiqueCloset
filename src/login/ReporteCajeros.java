@@ -1,0 +1,267 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package login;
+
+import conexion.ConexionBD;
+import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
+public class ReporteCajeros extends javax.swing.JFrame {
+
+    public ReporteCajeros() {
+        initComponents();
+        setTitle("Reporte de Cajeros");
+        setSize(800, 600);
+        setLocationRelativeTo(null); // Centra la ventana
+        cmbTipoReporte.setSelectedIndex(0); 
+        mostrarGrafica();
+    }
+
+private DefaultPieDataset obtenerCajerosActivos() {
+    DefaultPieDataset dataset = new DefaultPieDataset();
+
+    try (Connection conn = ConexionBD.getConexion()) {
+        String sql = "SELECT rol, COUNT(*) AS cantidad FROM usuarios WHERE rol = 'Cajero' GROUP BY rol";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            String rol = rs.getString("rol");
+            int cantidad = rs.getInt("cantidad");
+            dataset.setValue(rol, cantidad);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al obtener cajeros activos: " + e.getMessage());
+    }
+
+    return dataset;
+}
+
+
+    private DefaultCategoryDataset obtenerComprasPorCajero() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        try (Connection conn = ConexionBD.getConexion()) {
+            String sql = "SELECT id_venta, total FROM ventas ORDER BY id_venta ASC";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String venta = "Venta #" + rs.getInt("id_venta");
+                double total = rs.getDouble("total");
+                dataset.addValue(total, "Ventas", venta);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener datos de ventas: " + e.getMessage());
+        }
+
+        return dataset;
+    }
+
+    private DefaultCategoryDataset obtenerSatisfaccionQuejas() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        try (Connection conn = ConexionBD.getConexion()) {
+            String sql = "SELECT CASE WHEN mensaje ILIKE '%queja%' THEN 'Quejas' ELSE 'Otros' END AS tipo, COUNT(*) AS cantidad " +
+                         "FROM contacto_soporte " +
+                         "GROUP BY tipo";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String tipo = rs.getString("tipo");
+                int cantidad = rs.getInt("cantidad");
+                dataset.addValue(cantidad, "Mensajes", tipo);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener datos de satisfacción: " + e.getMessage());
+        }
+
+        return dataset;
+    }
+
+    private void mostrarGrafica() {
+        panelGrafica.removeAll();
+        panelGrafica.setLayout(new BorderLayout()); // Asegura el centrado
+
+        int opcion = cmbTipoReporte.getSelectedIndex();
+
+        if (opcion == 0) { // Gráfico de pastel
+            DefaultPieDataset dataset = obtenerCajerosActivos();
+            JFreeChart grafica = ChartFactory.createPieChart(
+                "Cajeros Activos", dataset, true, true, false
+            );
+            ChartPanel panel = new ChartPanel(grafica);
+            panelGrafica.add(panel, BorderLayout.CENTER);
+
+        } else if (opcion == 1) { // Barras: Ventas
+            DefaultCategoryDataset dataset = obtenerComprasPorCajero();
+            JFreeChart grafica = ChartFactory.createBarChart(
+                "Ventas por Cajero", "ID Venta", "Total", dataset
+            );
+            ChartPanel panel = new ChartPanel(grafica);
+            panelGrafica.add(panel, BorderLayout.CENTER);
+
+        } else if (opcion == 2) { // Barras: Satisfacción
+            DefaultCategoryDataset dataset = obtenerSatisfaccionQuejas();
+            JFreeChart grafica = ChartFactory.createBarChart(
+                "Satisfacción y Quejas", "Tipo de Mensaje", "Cantidad", dataset
+            );
+            ChartPanel panel = new ChartPanel(grafica);
+            panelGrafica.add(panel, BorderLayout.CENTER);
+        }
+
+        panelGrafica.revalidate();
+        panelGrafica.repaint();
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        cmbTipoReporte = new javax.swing.JComboBox<>();
+        panelGrafica = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        cmbTipoReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cajeros Activos", "Ventas por Cajero", "Satisfacción / Quejas" }));
+        cmbTipoReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoReporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jButton2)
+                .addContainerGap(456, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmbTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(cmbTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 420, 692, 60);
+
+        panelGrafica.setMaximumSize(new java.awt.Dimension(400, 300));
+        panelGrafica.setMinimumSize(new java.awt.Dimension(400, 300));
+        panelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        javax.swing.GroupLayout panelGraficaLayout = new javax.swing.GroupLayout(panelGrafica);
+        panelGrafica.setLayout(panelGraficaLayout);
+        panelGraficaLayout.setHorizontalGroup(
+            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        panelGraficaLayout.setVerticalGroup(
+            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panelGrafica);
+        panelGrafica.setBounds(160, 60, 400, 300);
+
+        jLabel8.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/imagenes/b1.jpg"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(6, 0, 690, 420);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbTipoReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoReporteActionPerformed
+    mostrarGrafica();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoReporteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+          ReportesEstadisticas v= new ReportesEstadisticas();
+         v.setVisible(true);
+         this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ReporteCajeros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ReporteCajeros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ReporteCajeros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ReporteCajeros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ReporteCajeros().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbTipoReporte;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel panelGrafica;
+    // End of variables declaration//GEN-END:variables
+}

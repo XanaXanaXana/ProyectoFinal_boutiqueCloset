@@ -1,0 +1,297 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package login;
+
+import conexion.Producto;
+import conexion.productoADO;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.util.List;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+public class VerCatalogo extends javax.swing.JFrame {
+
+    private JPanel panelListaProductos; 
+
+    public VerCatalogo() {
+        initComponents();
+        setLocationRelativeTo(null);        
+        configurarPanelLista();
+        cargarCategorias();
+        cargarCatalogo(null, null); 
+        // Búsqueda automática al escribir en el campo txtBuscar
+txtBuscar.getDocument().addDocumentListener(new DocumentListener() {
+    public void insertUpdate(DocumentEvent e) {
+        filtrarCatalogo();
+    }
+    public void removeUpdate(DocumentEvent e) {
+        filtrarCatalogo();
+    }
+    public void changedUpdate(DocumentEvent e) {
+        filtrarCatalogo();
+    }
+});
+
+    }
+
+    private void configurarPanelLista() {
+        panelListaProductos = new JPanel();
+        panelListaProductos.setLayout(new BoxLayout(panelListaProductos, BoxLayout.Y_AXIS));
+        panelListaProductos.setBackground(Color.LIGHT_GRAY);
+
+        JScrollPane scrollPane = new JScrollPane(panelListaProductos);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        panelCatalogo.setLayout(new BorderLayout());
+        panelCatalogo.add(scrollPane, BorderLayout.CENTER);
+    }
+
+    private void cargarCategorias() {
+        cmbCategoria.removeAllItems();
+        cmbCategoria.addItem("Todos");
+        cmbCategoria.addItem("Ropa");
+        cmbCategoria.addItem("Zapatos");
+        cmbCategoria.addItem("Accesorios");
+        cmbCategoria.addItem("Bolsas");
+    }
+
+private void cargarCatalogo(String filtroNombre, String filtroCategoria) {
+    productoADO dao = new productoADO();
+    List<Producto> productos = dao.obtenerProductos();
+
+    panelListaProductos.removeAll();
+
+    JPanel espacioSuperior = new JPanel();
+    espacioSuperior.setPreferredSize(new Dimension(10, 20)); 
+    espacioSuperior.setBackground(Color.LIGHT_GRAY); 
+    panelListaProductos.add(espacioSuperior);
+
+    for (Producto p : productos) {
+        if (filtroNombre != null && !filtroNombre.isEmpty()
+                && !p.getNombre().toLowerCase().contains(filtroNombre.toLowerCase())) {
+            continue;
+        }
+        if (filtroCategoria != null && !filtroCategoria.equals("Todos")
+                && !p.getCategoria().equalsIgnoreCase(filtroCategoria)) {
+            continue;
+        }
+
+        JPanel tarjeta = new JPanel(new BorderLayout(5, 5));
+        tarjeta.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        tarjeta.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+        tarjeta.setBackground(Color.WHITE);
+
+        ImageIcon icon = new ImageIcon(p.getRutaImagen());
+        Image img = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(img));
+        lblImagen.setPreferredSize(new Dimension(100, 100));
+
+       
+        JLabel lblNombre = new JLabel(p.getNombre());
+        lblNombre.setFont(new Font("Arial", Font.BOLD, 14));
+
+        JLabel lblPrecio = new JLabel("Precio: $" + p.getPrecio() + " MXN");
+        lblPrecio.setForeground(Color.BLUE);
+
+        JLabel lblStock = new JLabel(p.getStock() > 0 ? "En stock ✅" : "Agotado ❌");
+        lblStock.setForeground(p.getStock() > 0 ? Color.GREEN.darker() : Color.RED);
+
+        JButton btnDetalles = new JButton("Ver detalles");
+        btnDetalles.addActionListener(e -> {
+            verDetalles ventana = new verDetalles(p);
+            ventana.setVisible(true);
+        });
+
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+        panelInfo.add(lblNombre);
+        panelInfo.add(lblPrecio);
+        panelInfo.add(lblStock);
+        panelInfo.add(btnDetalles);
+
+        tarjeta.add(lblImagen, BorderLayout.WEST);
+        tarjeta.add(panelInfo, BorderLayout.CENTER);
+
+        panelListaProductos.add(tarjeta);
+    }
+
+    panelListaProductos.revalidate();
+    panelListaProductos.repaint();
+}
+private void filtrarCatalogo() {
+    String nombre = txtBuscar.getText().trim();
+    String categoria = (cmbCategoria.getSelectedItem() != null) ? cmbCategoria.getSelectedItem().toString() : "Todos";
+    cargarCatalogo(nombre, categoria);
+}
+
+    /**
+     * Muestra los productos en el panelCatalogo
+     */
+
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        panelCatalogo = new javax.swing.JPanel();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cmbCategoria = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelCatalogo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Categoria :");
+
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ropa", "Calzado", "Bolsas", "Accesorios" }));
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("<<<<<Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/imagenes/b1.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelCatalogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(23, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(jLabel1)
+                    .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(2, 2, 2)
+                .addComponent(panelCatalogo, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String nombre = txtBuscar.getText().trim();
+        String categoria = cmbCategoria.getSelectedItem().toString();
+        cargarCatalogo(nombre, categoria);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+        if (cmbCategoria.getSelectedItem() == null) {
+            return; // No hacer nada si no hay selección
+        }
+        String nombre = txtBuscar.getText().trim();
+        String categoria = cmbCategoria.getSelectedItem().toString();
+        cargarCatalogo(nombre, categoria);
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    AccesoClie acceso = new AccesoClie();
+    acceso.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VerCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VerCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VerCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VerCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VerCatalogo().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> cmbCategoria;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel panelCatalogo;
+    private javax.swing.JTextField txtBuscar;
+    // End of variables declaration//GEN-END:variables
+}
