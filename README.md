@@ -15,8 +15,8 @@ Cuenta con un inicio de sesión que valida el correo y la contraseña del usuari
 
 Dependiendo del rol del usuario, el sistema habilita diferentes funcionalidades:
 
-🔹 **Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.
-🔹 **Cajero:** tiene acceso a la consulta de productos y al proceso de venta.
+🔹**Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.
+🔹**Cajero:** tiene acceso a la consulta de productos y al proceso de venta.
 
 ---
 
@@ -115,13 +115,13 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ###  Requisitos mínimos
 
-☁️ **Java JDK:** 24  
-☁️ **NetBeans IDE:** 12 o superior  
-☁️ **Base de datos:** PostgreSQL 13 o superior  
-☁️ **Sistema operativo:** Windows (probado en entorno Windows)
+🔹 **Java JDK:** 24  
+🔹 **NetBeans IDE:** 12 o superior  
+🔹 **Base de datos:** PostgreSQL 13 o superior  
+🔹 **Sistema operativo:** Windows (probado en entorno Windows)
 
 ---
 
-🎉 **Gracias por revisar nuestro proyecto "Boutique Closet"**  
+ **Gracias por revisar nuestro proyecto "Boutique Closet"**  
 Desarrollado con dedicación y trabajo en equipo por el Equipo 1.
 
