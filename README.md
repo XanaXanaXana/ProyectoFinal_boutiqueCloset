@@ -15,8 +15,8 @@ Cuenta con un inicio de sesión que valida el correo y la contraseña del usuari
 
 Dependiendo del rol del usuario, el sistema habilita diferentes funcionalidades:
 
-☁️ **Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.
-☁️ **Cajero:** tiene acceso a la consulta de productos y al proceso de venta.
+🔹 **Administrador:** puede gestionar productos, usuarios, pedidos y consultar estadísticas. Además, puede registrar nuevos usuarios.
+🔹 **Cajero:** tiene acceso a la consulta de productos y al proceso de venta.
 
 ---
 
@@ -29,12 +29,12 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ## Librería externa implementada
 
-☁️ **Librería 2:**  
+🔹 **Librería 2:**  
   Es una librería reutilizada de un equipo anterior, que permite validar contraseñas durante el proceso de inicio de sesión.
 
   > 📁 Archivo: `Libreria2.jar`
 
-☁️ **Librería 3:**  
+🔹 **Librería 3:**  
   Esta librería se encarga del envío de correos electrónicos desde el sistema al correo del usuario. Se reutilizó de un proyecto de la unidad anterior.
 
   > 📁 Archivo: `Libreria3.jar`
@@ -43,7 +43,7 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ## Componente visual integrado
 
-☁️ **CaptchaPanel.jar:**  
+🔹 **CaptchaPanel.jar:**  
   Es un componente visual implementado en la pantalla de login, que solicita al usuario resolver un CAPTCHA antes de acceder al sistema. Este componente fue desarrollado por otro equipo en un trabajo anterior y se reutilizó para este proyecto.  
   Se usa para verificar que el acceso al sistema no sea automatizado y agregar una capa de seguridad. Ademas cuenta con un botón para recargar la imagen en caso de que la primera visalización no sea clara.
 
@@ -58,36 +58,36 @@ Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además 
 Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ###  CRUD de usuarios
-☁️ Solo accesible para el administrador.
-☁️ Permite registrar nuevos usuarios (administradores o cajeros), así como editar, eliminar o consultar la información de los existentes.
+🔹 Solo accesible para el administrador.
+🔹 Permite registrar nuevos usuarios (administradores o cajeros), así como editar, eliminar o consultar la información de los existentes.
 
 ###  CRUD de productos
-☁️ Permite al administrador dar de alta, modificar o eliminar productos.
-☁️ Incluye información como nombre, precio, categoría, etc.
+🔹 Permite al administrador dar de alta, modificar o eliminar productos.
+🔹 Incluye información como nombre, precio, categoría, etc.
 
 ###  CRUD de pedidos
-☁️ Gestión de pedidos dentro de la boutique.
-☁️ Permite consultar el historial y detalles de cada pedido.
+🔹 Gestión de pedidos dentro de la boutique.
+🔹 Permite consultar el historial y detalles de cada pedido.
 
 ###  Proceso de ventas (rol cajero)
-☁️ El cajero puede consultar los productos disponibles.
-☁️ Permite realizar ventas seleccionando productos y cantidades.
+🔹 El cajero puede consultar los productos disponibles.
+🔹 Permite realizar ventas seleccionando productos y cantidades.
 
 ###  Módulo de estadísticas
-☁️ Permite al administrador visualizar reportes gráficos de ventas y actividad del sistema.
-☁️ Usa gráficos generados con la librería `jfreechart`.
+🔹 Permite al administrador visualizar reportes gráficos de ventas y actividad del sistema.
+🔹 Usa gráficos generados con la librería `jfreechart`.
 
 ###  Envío de correo electrónico con PDF adjunto
-☁️ Al completar ciertas acciones, como registrar usuarios o ventas, se envía un correo al usuario con un **archivo PDF** adjunto.
-☁️ El PDF puede incluir detalles del pedido o confirmaciones.
-☁️ Se usó la librería **`itextpdf-5.5.13.2.jar`** para generar el PDF y **`javax.mail`** para enviarlo por correo.
-☁️ Toda esta lógica se maneja a través de **Librería 3** (desarrollada previamente por un equipo de una unidad anterior).
+🔹 Al completar ciertas acciones, como registrar usuarios o ventas, se envía un correo al usuario con un **archivo PDF** adjunto.
+🔹 El PDF puede incluir detalles del pedido o confirmaciones.
+🔹 Se usó la librería **`itextpdf-5.5.13.2.jar`** para generar el PDF y **`javax.mail`** para enviarlo por correo.
+🔹 Toda esta lógica se maneja a través de **Librería 3** (desarrollada previamente por un equipo de una unidad anterior).
 
 ---
 
 ## Dependencias y configuración
 
-### 📚 Librerías externas utilizadas
+###  Librerías externas utilizadas
 
 | Librería | Descripción |
 |----------|-------------|
@@ -103,7 +103,7 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ---
 
-### ⚙️ Pasos para instalar y ejecutar el sistema
+###  Pasos para instalar y ejecutar el sistema
 
 1. Clonar el repositorio desde GitHub.
 2. Abrir el proyecto en **NetBeans**.
@@ -113,7 +113,7 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ---
 
-### 🖥️ Requisitos mínimos
+###  Requisitos mínimos
 
 ☁️ **Java JDK:** 24  
 ☁️ **NetBeans IDE:** 12 o superior  
