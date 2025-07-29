@@ -45,7 +45,8 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 🔹 **CaptchaPanel.jar:**  
   Es un componente visual implementado en la pantalla de login, que solicita al usuario resolver un CAPTCHA antes de acceder al sistema. Este componente fue desarrollado por otro equipo en un trabajo anterior y se reutilizó para este proyecto.  
-  Se usa para verificar que el acceso al sistema no sea automatizado y agregar una capa de seguridad. Ademas cuenta con un botón para recargar la imagen en caso de que la primera visalización no sea clara.
+  Se usa para verificar que el acceso al sistema no sea automatizado y agregar una capa de seguridad. Ademas cuenta con un botón para recargar la imagen en caso de que la primera visalización no sea clara.  
+  
 link-> https://github.com/FanyBr07/ComponenteVisual
 
 ---
