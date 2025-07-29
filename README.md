@@ -1,14 +1,14 @@
-# ProyectoFinal_boutiqueCloset✨✨
+# ProyectoFinal_boutiqueCloset
 # Boutique Closet - Sistema de Gestión
 
-## 🤩😁Equipo: 1  
+## Equipo: 1  
 **Integrantes del equipo:**  
 🔹 **Ingrid Arcadio Aparicio** – Desarrolladora y Diseñadora  
 🔹 **Xana Amalinalli Pérez Jiménez** – Desarrolladora y Diseñadora  
 
 ---
 
-##🤩🙀🙀 ¿Qué hace el sistema?
+## ¿Qué hace el sistema?
 
 **"Boutique Closet"** es un sistema de escritorio que simula el funcionamiento de una boutique. El sistema permite la administración de usuarios, productos, pedidos y ventas.  
 Cuenta con un inicio de sesión que valida el correo y la contraseña del usuario, e integra un sistema CAPTCHA para verificar que no se trata de un bot.  
@@ -20,7 +20,7 @@ Dependiendo del rol del usuario, el sistema habilita diferentes funcionalidades:
 
 ---
 
-## 😁🙌Tipo de sistema
+## Tipo de sistema
 
 **Aplicación de Escritorio (Desktop App)** desarrollada en **Java** utilizando **NetBeans**.  
 Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas para funcionalidades específicas como envío de correos, generación de PDF y gráficos.
@@ -32,16 +32,16 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 🔹 **Librería 2:**  
   Es una librería reutilizada de un equipo anterior, que permite validar contraseñas durante el proceso de inicio de sesión.
 
-  > 📁 Archivo: `Libreria2.jar`
+  >  Archivo: `Libreria2.jar` https://github.com/olmomomo/Libreria_correoElectronico
 
 🔹 **Librería 3:**  
   Esta librería se encarga del envío de correos electrónicos desde el sistema al correo del usuario. Se reutilizó de un proyecto de la unidad anterior.
 
-  > 📁 Archivo: `Libreria3.jar`
+  >  Archivo: `Libreria3.jar`
 
 ---
 
-## 👀😉Componente visual integrado
+## Componente visual integrado
 
 🔹 **CaptchaPanel.jar:**  
   Es un componente visual implementado en la pantalla de login, que solicita al usuario resolver un CAPTCHA antes de acceder al sistema. Este componente fue desarrollado por otro equipo en un trabajo anterior y se reutilizó para este proyecto.  
@@ -49,7 +49,7 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ---
 
-## 🤩🫡Funcionalidades clave con imágenes
+## Funcionalidades clave con imágenes
 
 ![Pantalla de Login](capturas/captura1.png)
 ![](capturas/captura2.png)
@@ -65,19 +65,19 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ---
 
-### 🤩🙀 Inicio de sesión con CAPTCHA
+###  Inicio de sesión con CAPTCHA
 Al iniciar sesión, el usuario debe ingresar su correo y contraseña, y además resolver un CAPTCHA.  
 Esto asegura que sea un usuario humano y no un acceso automatizado.
 
-### 🫡😮 CRUD de usuarios
+###  CRUD de usuarios
 🔹 Solo accesible para el administrador.  
 🔹 Permite registrar nuevos usuarios (administradores o cajeros), así como editar, eliminar o consultar la información de los existentes.
 
-### 😑😶 CRUD de productos
+###  CRUD de productos
 🔹 Permite al administrador dar de alta, modificar o eliminar productos.  
 🔹 Incluye información como nombre, precio, categoría, etc.
 
-### 😃😁 CRUD de pedidos
+###  CRUD de pedidos
 🔹 Gestión de pedidos dentro de la boutique.  
 🔹 Permite consultar el historial y detalles de cada pedido.
 
@@ -85,11 +85,11 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 🔹 El cajero puede consultar los productos disponibles.  
 🔹 Permite realizar ventas seleccionando productos y cantidades.
 
-### 🙌🫡 Módulo de estadísticas
+###  Módulo de estadísticas
 🔹 Permite al administrador visualizar reportes gráficos de ventas y actividad del sistema.  
 🔹 Usa gráficos generados con la librería `jfreechart`.
 
-### 🙌👀 Envío de correo electrónico con PDF adjunto
+###  Envío de correo electrónico con PDF adjunto
 🔹 Al completar ciertas acciones, como registrar usuarios o ventas, se envía un correo al usuario con un **archivo PDF** adjunto.  
 🔹 El PDF puede incluir detalles del pedido o confirmaciones.  
 🔹 Se usó la librería **`itextpdf-5.5.13.2.jar`** para generar el PDF y **`javax.mail`** para enviarlo por correo.  
@@ -97,9 +97,9 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ---
 
-## 👀Dependencias y configuración
+## Dependencias y configuración
 
-### 🤩🫡 Librerías externas utilizadas
+###  Librerías externas utilizadas
 
 | Librería | Descripción |
 |----------|-------------|
@@ -115,7 +115,7 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ---
 
-### 👀😉 Pasos para instalar y ejecutar el sistema
+###  Pasos para instalar y ejecutar el sistema
 
 1. Clonar el repositorio desde GitHub.
 2. Abrir el proyecto en **NetBeans**.
@@ -125,7 +125,7 @@ Esto asegura que sea un usuario humano y no un acceso automatizado.
 
 ---
 
-### 😎 Requisitos mínimos
+###  Requisitos mínimos
 
 🔹 **Java JDK:** 24  
 🔹 **NetBeans IDE:** 12 o superior  
