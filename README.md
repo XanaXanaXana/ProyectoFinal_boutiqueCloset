@@ -29,15 +29,15 @@ Se conecta a una base de datos PostgreSQL y emplea diversas librerías externas 
 
 ## Librería externa implementada
 
-🔹 **Librería 2:**  
+🔹 **Librería que valida contraseñas:**  
   Es una librería reutilizada de un equipo anterior, que permite validar contraseñas durante el proceso de inicio de sesión.
 
-  >  Archivo: `Libreria2.jar` https://github.com/olmomomo/Libreria_correoElectronico
+  >  Archivo: `Libreria2.jar` https://github.com/Marco1120/Creacion-Libreria
 
-🔹 **Librería 3:**  
+🔹 **Librería que envía correos:**  
   Esta librería se encarga del envío de correos electrónicos desde el sistema al correo del usuario. Se reutilizó de un proyecto de la unidad anterior.
 
-  >  Archivo: `Libreria3.jar`
+  >  Archivo: `Libreria3.jar` https://github.com/olmomomo/Libreria_correoElectronico
 
 ---
 
